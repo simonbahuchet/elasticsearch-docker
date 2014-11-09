@@ -38,7 +38,7 @@ curl -XGET http://<IP>:9200/_cluster/state?pretty=true
 	
 ### Run multiple nodes
 	
-Configure <data-dir>/elasticsearch.yml
+Configure <data-dir>/data/config/elasticsearch.yml
 
 ```yml
 discovery.zen.minimum_master_nodes: 2
@@ -58,7 +58,7 @@ sudo docker run -d \
 	-p 9200:9200 -p 9300:9300 \
 	-v <data-dir>:/data \
 	sisays/elasticsearch \
-	/elasticsearch/bin/elasticsearch -Des.config=/data/elasticsearch.yml
+	/elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
 ```
 
 ```sh
@@ -69,7 +69,7 @@ sudo docker run -d \
 	-p 9201:9200 -p 9301:9300 \
 	-v <data-dir>:/data \
 	sisays/elasticsearch \
-	/elasticsearch/bin/elasticsearch -Des.config=/data/elasticsearch.yml
+	/elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
 ```
 
 ```sh
@@ -80,7 +80,7 @@ sudo docker run -d \
 	-p 9202:9200 -p 9302:9300 \
 	-v <data-dir>:/data \
 	sisays/elasticsearch \
-	/elasticsearch/bin/elasticsearch -Des.config=/data/elasticsearch.yml
+	/elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
 ```
 
 #### Get the IP of one the nodes

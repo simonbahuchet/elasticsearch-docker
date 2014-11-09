@@ -139,11 +139,11 @@
 
 
 #################################### Paths ####################################
-#path:
-#  data: /data/data
-#  logs: /data/log
-#  plugins: /data/plugins
-#  work: /data/work
+path:
+  data: /data/data
+  logs: /data/log
+  plugins: /data/plugins
+  work: /data/work
 
 #################################### Plugin ###################################
 
@@ -279,13 +279,13 @@
 # operational within the cluster. This should be set to a quorum/majority of 
 # the master-eligible nodes in the cluster.
 #
-#discovery.zen.minimum_master_nodes: 1
+discovery.zen.minimum_master_nodes: 2
 
 # Set the time to wait for ping responses from other nodes when discovering.
 # Set this option to a higher value on a slow or congested network
 # to minimize discovery failures:
 #
-#discovery.zen.ping.timeout: 3s
+discovery.zen.ping.timeout: 5s
 
 # For more information, see
 # <http://elasticsearch.org/guide/en/elasticsearch/reference/current/modules-discovery-zen.html>
@@ -296,13 +296,13 @@
 #
 # 1. Disable multicast discovery (enabled by default):
 #
-#discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.multicast.enabled: false
 
 #
 # 2. Configure an initial list of master nodes in the cluster
 #    to perform discovery when new nodes (master or data) are started:
 #
-#discovery.zen.ping.unicast.hosts: ["es_node1", "es_node2", "es_node3"]
+discovery.zen.ping.unicast.hosts: ["es_node1", "es_node2", "es_node3"]
 
 # EC2 discovery allows to use AWS EC2 API in order to perform discovery.
 #
