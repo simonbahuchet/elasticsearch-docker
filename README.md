@@ -1,7 +1,7 @@
 ## ElasticSearch Dockerfile
 
 
-This repository contains **Dockerfile** of [ElasticSearch](http://www.elasticsearch.org/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/sisays/elasticsearch/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
+This repository contains **Dockerfile** of [ElasticSearch](http://www.elasticsearch.org/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/sisays/elasticsearch-docker/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
 
 
 ### Base Docker Image
@@ -37,8 +37,10 @@ curl -XGET http://<IP>:9200/_cluster/state?pretty=true
 ```	
 	
 ### Run multiple nodes
-	
-Configure <data-dir>/data/config/elasticsearch.yml
+
+1. Create a <data-dir>/config directory
+
+2. Configure a <data-dir>/config/elasticsearch.yml with:
 
 ```yml
 discovery.zen.minimum_master_nodes: 2
@@ -49,37 +51,37 @@ path:
    data: /data/data
 ```
 
-and then start up 3 nodes:
+3. and then start up 3 nodes:
 	
 ```sh
-sudo docker run -d \
+docker run -d \
 	-h es_node1 \
 	--name=es_node1 \
 	-p 9200:9200 -p 9300:9300 \
 	-v <data-dir>:/data \
-	sisays/elasticsearch \
+	sisays/elasticsearch-docker \
 	/elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
 ```
 
 ```sh
-sudo docker run -d \
+docker run -d \
 	-h es_node2 \
 	--name=es_node2 \
 	--link es_node1:es_node1 \
 	-p 9201:9200 -p 9301:9300 \
 	-v <data-dir>:/data \
-	sisays/elasticsearch \
+	sisays/elasticsearch-docker \
 	/elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
 ```
 
 ```sh
-sudo docker run -d \
+docker run -d \
 	-h es_node3 \
 	--name=es_node3 \
 	--link es_node1:es_node1 --link es_node2:es_node2 \
 	-p 9202:9200 -p 9302:9300 \
 	-v <data-dir>:/data \
-	sisays/elasticsearch \
+	sisays/elasticsearch-docker \
 	/elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
 ```
 
