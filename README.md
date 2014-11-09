@@ -15,10 +15,10 @@ This repository contains **Dockerfile** of [ElasticSearch](http://www.elasticsea
 
 2. Download [automated build](https://registry.hub.docker.com/u/sisays/elasticsearch-docker/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull sisays/elasticsearch-docker`
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="sisays/elasticsearch-docker" github.com/simonbahuchet/elasticsearch-docker`)
+   (alternatively, you can build an image from Dockerfile: `docker build -t="sisays/elasticsearch-docker" github.com/simonbahuchet/elasticsearch-docker`)  
+     
 
-
-### Usage: Run one node
+### Usage1: Run one node
 
 ```sh
 docker run -d -p 9200:9200 -p 9300:9300 sisays/elasticsearch-docker
@@ -34,9 +34,10 @@ docker inspect --format '{{ .NetworkSettings.IPAddress }}' <CONTAINER_ID>
 
 ```sh
 curl -XGET http://<IP>:9200/_cluster/state?pretty=true
-```	
+```  
+  
 	
-### Run multiple nodes
+### Usage2: Run a 3-nodes cluster (unicast)
 
 1. Create a <data-dir>/config directory
 
